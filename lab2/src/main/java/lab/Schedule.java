@@ -39,7 +39,7 @@ public class Schedule extends Time {
 
 
 
-    @TestAnnotation
+
     public String calculateTimeToLessonBegin(Time currentTime){
         Time timeToBegin = currentTime;
 

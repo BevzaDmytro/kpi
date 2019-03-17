@@ -48,11 +48,10 @@ public class Main {
                 Time.class.getInterfaces(),
                 new TimeProxy(time)
         );
-        try {
-            timeProxy.setTime("01", "11");
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+
+//            timeProxy.setTime("01", "11");
+
+
         System.out.println( timeProxy.getTime());
     }
 }
