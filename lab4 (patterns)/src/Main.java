@@ -1,3 +1,6 @@
+import decorator.MessageSender;
+import decorator.StandartSender;
+import decorator.VideoMessageDecorator;
 import prototype.ClonableHuman;
 import prototype.ClonesArmy;
 import prototype.Pilot;
@@ -40,7 +43,7 @@ public class Main {
         System.out.println("====strategy=====");
         PaymentProvider paymentProvider = new PaymentProvider();
 
-        boolean swift = false;
+        boolean swift = true;
         if(swift){
             paymentProvider.setPayment(new Swift());
         }
@@ -49,6 +52,11 @@ public class Main {
         paymentProvider.pay();
 
         /////////////////////////
+        System.out.println("=======decorator==========");
+        MessageSender messageSender = new StandartSender();
+        messageSender.send("First message");
 
+        messageSender = new VideoMessageDecorator(messageSender);
+        messageSender.send("second");
     }
 }
