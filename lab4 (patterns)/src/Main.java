@@ -2,6 +2,9 @@ import prototype.ClonableHuman;
 import prototype.ClonesArmy;
 import prototype.Pilot;
 import singleton.SingleTime;
+import strategy.LiqPay;
+import strategy.PaymentProvider;
+import strategy.Swift;
 
 public class Main {
 
@@ -33,6 +36,19 @@ public class Main {
                 System.out.println(((Pilot) human).getExperience());
             }
         }
+        /////////////////
+        System.out.println("====strategy=====");
+        PaymentProvider paymentProvider = new PaymentProvider();
+
+        boolean swift = false;
+        if(swift){
+            paymentProvider.setPayment(new Swift());
+        }
+        else paymentProvider.setPayment(new LiqPay());
+
+        paymentProvider.pay();
+
+        /////////////////////////
 
     }
 }
