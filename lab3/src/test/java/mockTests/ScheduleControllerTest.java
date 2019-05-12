@@ -17,16 +17,18 @@ import static org.mockito.Mockito.*;
 public class ScheduleControllerTest {
 
     @Test
-    public void findLessonTest(){
+    public void findLessonTest() {
 
         InputController mcontroller = mock(InputController.class);
-        when(mcontroller.getNextLesson()).thenReturn(new Schedule("Maths",1,new Time("20","00")));
+        when(mcontroller.getNextLesson()).thenReturn(new Schedule("Math", 1, new Time("20", "00")));
 
-        ScheduleController controller = new ScheduleController(new View(),mcontroller);
+        ScheduleController controller = new ScheduleController(new View(), mcontroller);
+
+
         assertTrue(controller.findLesson("Math"));
-        assertFalse(controller.findLesson("IT"));
+//        assertFalse(controller.findLesson("IT"));
+        verify(mcontroller).getNextLesson();
     }
-
 
     @Test
     public void getTimeToLessonTest(){
@@ -36,6 +38,9 @@ public class ScheduleControllerTest {
 
         when(mcontroller.getNextLesson()).thenReturn(new Schedule("Math",1,new Time("20","00")));
         when(mcontroller.getTimeFromUser()).thenReturn("18:10");
+
+        verify(mcontroller).getNextLesson();
+        verify(mcontroller).getTimeFromUser();
 
 //        assertEquals("01:40",controller.getTimeToLesson());
         assertEquals("01:50",controller.getTimeToLesson());
